@@ -4,7 +4,7 @@ Version:	0.2
 Release:	beta%{?dist}
 License:	GPLv3
 Group:		System Environment/Base
-Source0:	https://github.com/gfleury/overlayroot/archive/v%{version}.zip	
+Source0:	dracut-modules-overlayroot-%{version}.tar.gz	
 
 Requires:	dracut
 Requires:	util-linux
