@@ -134,13 +134,16 @@ mkdir -p /run/root-rw || echo Fail create rw dir
 
 # Silent fallback if no device specified on conf file
 [ -n "$overlayrootdevice" ] || return 1
-echo $overlayrootdevice | grep -q LABEL && overlayrootdevice=$(blkid -L ${overlayrootdevice##*:})
-echo $overlayrootdevice | grep -q UUID  && overlayrootdevice=$(blkid -U ${overlayrootdevice##*:})
+#echo $overlayrootdevice | grep -q LABEL
+[ -n "${overlayrootdevice:0:6}" = "LABEL:" ] && overlayrootdevice=$(blkid -L ${overlayrootdevice##*:})
+#echo $overlayrootdevice | grep -q UUID 
+[ -n "${overlayrootdevice:0:5}" = "UUID:" ] && overlayrootdevice=$(blkid -U ${overlayrootdevice##*:})
+
 [ ! -b $overlayrootdevice ] && (echo Overlayroot device not found. Falling back to root device. && return 1)
 [ $? != 0 ] || return
 
 # Mount and/or format the ephemeral device
-mount $overlayrootdevice /run/root-rw || ((mkfs.xfs -f $overlayrootdevice && mount $overlayrootdevice /run/root-rw) || (echo Fail mount $overlayrootdevice. Falling back to root device. && return 1))
+mount $overlayrootdevice /run/root-rw || (echo Fail mount $overlayrootdevice. Falling back to root device. && return 1))
 [ $? = 0 ] || return
 
 # Create working directories to the RW filesystem
