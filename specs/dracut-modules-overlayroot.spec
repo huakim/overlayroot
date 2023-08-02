@@ -31,6 +31,8 @@ make install BUILDROOT=%{buildroot} DESTDIR=%{_exec_prefix}/lib
 %files
 %doc README.md
 %dir %{_prefix}/lib/dracut/modules.d/50overlayroot
+%dir %{_prefix}/lib/dracut/modules.d/
+%dir %{_prefix}/lib/dracut/
 %{_prefix}/lib/dracut/modules.d/50overlayroot/mount-overlayroot.sh
 %{_prefix}/lib/dracut/modules.d/50overlayroot/module-setup.sh
 /etc/overlayroot.conf
