@@ -4,7 +4,7 @@ Version:	0.2
 Release:	beta%{?dist}
 License:	GPLv3
 Group:		System Environment/Base
-Source0:	https://github.com/zuhhaga/overlayroot/archive/refs/tags/v%{version}.tar.gz#/overlayfs-%{version}.tar.gz	
+Source0:	https://github.com/zuhhaga/overlayroot/archive/refs/tags/v%{version}.tar.gz#/overlayroot-%{version}.tar.gz	
 
 Requires:	dracut
 Requires:	util-linux
