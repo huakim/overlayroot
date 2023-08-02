@@ -4,7 +4,7 @@ Version:	0.2
 Release:	beta%{?dist}
 License:	GPLv3
 Group:		System Environment/Base
-Source0:	dracut-modules-overlayroot-%{version}.tar.gz	
+Source0:	https://github.com/zuhhaga/overlayroot/archive/refs/tags/v%{version}.tar.gz#/overlayfs-%{version}.tar.gz	
 
 Requires:	dracut
 Requires:	util-linux
@@ -30,17 +30,18 @@ make install BUILDROOT=%{buildroot} DESTDIR=%{_exec_prefix}/lib
 
 %files
 %doc README.md
-%if 0%{?amzn} || 0%{?rhel} || 0%{?centos}
 %dir %{_prefix}/lib/dracut/modules.d/50overlayroot
 %{_prefix}/lib/dracut/modules.d/50overlayroot/mount-overlayroot.sh
 %{_prefix}/lib/dracut/modules.d/50overlayroot/module-setup.sh
 /etc/overlayroot.conf
 %{_prefix}/sbin/overlayroot-chroot
-%endif
 
 %post 
 
 
 %changelog
+* Wed Aug 02 2023 huakim tylyktar <zuhhaga@gmail.com> - 0.2-beta
+- Minor fixes and updated spec file
+
 * Sun Apr 09 2017 George Fleury <gfleury@gmail.com> - 0.1-beta
 - First version 
